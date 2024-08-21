@@ -2,7 +2,8 @@
   <div class="movie">
     <img
       :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`"
-      class="movie-img" />
+      class="movie-img"
+    />
     <div>
       <div class="movie-name">
         {{ movie.original_title }} ({{ movie.release_date }})
@@ -10,8 +11,8 @@
       <span class="movie-overview">{{ movie.overview }}</span>
       <div class="movie-buttons">
         <button class="btn movie-buttons-watched">
-          <span v-if="!movie.isWatched">Watched</span>
-          <span v-else>Unwatched</span>
+          <div v-if="!movie.isWatched">Watched</div>
+          <div v-else>Unwatched</div>
         </button>
         <button class="btn movie-buttons-delete">Delete</button>
       </div>
@@ -26,7 +27,7 @@ const props = defineProps({
     required: true,
     default: () => {},
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
@@ -59,26 +60,28 @@ const props = defineProps({
     display: block;
     margin-bottom: 20px;
   }
+  &-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-watched {
+      color: #fff;
+      background: #1eb4c3;
+
+      &__icon {
+        width: 15px;
+        margin-left: 10px;
+      }
+    }
+
+    &-delete {
+      color: #fff;
+      background: #ff2a2a;
+    }
+  }
 }
 
-.movie-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.movie-buttons-watched {
-  color: #fff;
-  background: #1eb4c3;
-}
 
-.movie-buttons-watched__icon {
-  width: 15px;
-  margin-left: 10px;
-}
-
-.movie-buttons-delete {
-  color: #fff;
-  background: #ff2a2a;
-}
 </style>
