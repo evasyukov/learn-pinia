@@ -37,5 +37,8 @@ export const useMovieStore = defineStore("movieStore", {
       const movieId = this.movies.find((el) => el.id === id)
       movieId.isWatched = !movieId.isWatched
     },
+    deleteMovie(id) {
+      this.movies = this.movies.filter((el) => el.id !== id)
+    }
   },
 })
