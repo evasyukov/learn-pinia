@@ -10,7 +10,10 @@
       </div>
       <span class="movie-overview">{{ movie.overview }}</span>
       <div class="movie-buttons">
-        <button class="btn movie-buttons-watched">
+        <button
+          class="btn movie-buttons-watched"
+          @click="movieStore.isWatchedMovie(movie.id)"
+        >
           <div v-if="!movie.isWatched">Watched</div>
           <div v-else>Unwatched</div>
         </button>
@@ -21,6 +24,10 @@
 </template>
 
 <script setup>
+import {useMovieStore} from "../stores/MovieStore"
+
+const movieStore = useMovieStore()
+
 const props = defineProps({
   movie: {
     type: Object,
@@ -28,6 +35,7 @@ const props = defineProps({
     default: () => {},
   },
 })
+
 </script>
 
 <style lang="scss" scoped>
@@ -81,7 +89,4 @@ const props = defineProps({
     }
   }
 }
-
-
-
 </style>
